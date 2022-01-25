@@ -34,6 +34,7 @@ namespace Alxtrkhv.AudioSystem
                 managedAudioSource = audioSourcesPool.Get();
                 audioSource = managedAudioSource.AudioSource;
                 audioSource.transform.SetParent(emitter.transform, false);
+                managedAudioSource.gameObject.SetActive(true);
             }
 
             soundEvent.Initialize(
