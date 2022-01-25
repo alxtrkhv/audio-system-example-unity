@@ -16,9 +16,9 @@ namespace Alxtrkhv.AudioSystem
         private MonoBehaviour monoBehaviour;
         private Coroutine coroutine;
 
-        public SoundPlayer(MonoBehaviour monoBehaviour, SoundPlayerConfig config = default)
+        public SoundPlayer(SoundPlayerConfig config)
         {
-            this.monoBehaviour = monoBehaviour;
+            monoBehaviour = config.MonoBehaviour;
 
             LoadSounds(config.Sounds);
             InitializeCollections(config);

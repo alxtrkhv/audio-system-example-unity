@@ -46,10 +46,11 @@ namespace Alxtrkhv.AudioSystem
             var config = new SoundPlayerConfig(
                 audioSourcesPoolSize: audioSourcesPoolSize,
                 sounds: mainSoundPack.Sounds,
-                audioSourcePrefab: audioSourcePrefab
+                audioSourcePrefab: audioSourcePrefab,
+                monoBehaviour: application
             );
 
-            soundPlayer = new SoundPlayer(application, config);
+            soundPlayer = new SoundPlayer(config);
         }
 
         private void InitializeGame()
