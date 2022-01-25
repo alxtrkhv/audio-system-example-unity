@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config:
     Priority: 0
-  sources: []
+  sources:
+  - {fileID: 11400000, guid: 950707f25e7b8403d9cc2eb2f6a83497, type: 2}
+  - {fileID: 11400000, guid: 01dfd0d9ac2404b29a043542e50bc662, type: 2}
+  - {fileID: 11400000, guid: 2082e1a4d9b734ce89e81e95cf4ff9ae, type: 2}

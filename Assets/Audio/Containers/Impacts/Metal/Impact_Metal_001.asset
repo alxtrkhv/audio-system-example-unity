@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config:
     Priority: 0
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 4ed5e8a9f4a294ab7929cac13c78caa7, type: 3}
