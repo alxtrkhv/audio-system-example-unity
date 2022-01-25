@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Alxtrkhv.AudioSystem;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -70,6 +71,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Unit _unit;
 
 		private const float _threshold = 0.01f;
 
@@ -80,6 +82,8 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
+
+			_unit = GetComponent<Unit>();
 		}
 
 		private void Start()
@@ -97,6 +101,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Shoot();
 		}
 
 		private void LateUpdate()
@@ -222,6 +227,15 @@ namespace StarterAssets
 			if (_verticalVelocity < _terminalVelocity)
 			{
 				_verticalVelocity += Gravity * Time.deltaTime;
+			}
+		}
+
+		private void Shoot()
+		{
+			if (_input.shoot) {
+				_unit.Attack();
+
+				_input.shoot = false;
 			}
 		}
 
