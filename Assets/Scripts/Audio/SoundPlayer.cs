@@ -36,7 +36,7 @@ namespace Alxtrkhv.AudioSystem
                 audioSource.transform.SetParent(emitter.transform);
             }
 
-            soundEvent.Register(
+            soundEvent.Initialize(
                 source: audioSource,
                 sound: sound
             );

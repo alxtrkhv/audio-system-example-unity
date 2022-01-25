@@ -17,7 +17,7 @@ namespace Alxtrkhv.AudioSystem
         public AudioSource AudioSource { get; private set; }
         public EventStatus Status { get; private set; }
 
-        public void Register(ISound sound, AudioSource source)
+        public void Initialize(ISound sound, AudioSource source)
         {
             Sound = sound;
             AudioSource = source;
