@@ -60,10 +60,12 @@ namespace Alxtrkhv.AudioSystem
 
         private void InitializePool(SoundPlayerConfig config)
         {
+            var parent = new GameObject("AudioSourcesPool");
+
             audioSourcesPool = new LazyReleasedMonoBehaviourPool<ManagedAudioSource>(
                 size: config.AudioSourcesPoolSize,
                 prefab: config.AudioSourcePrefab,
-                parentTransform: null
+                parentTransform: parent.transform
             );
         }
 
