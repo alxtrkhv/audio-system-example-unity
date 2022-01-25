@@ -41,7 +41,7 @@ namespace Alxtrkhv.AudioSystem
         {
             if (!inactiveObjects.Contains(obj)) {
                 obj.gameObject.SetActive(false);
-                obj.transform.SetParent(parentTransform);
+                obj.transform.SetParent(parentTransform, false);
                 inactiveObjects.Push(obj);
             } else {
                 Debug.LogWarning($"{obj.name} object has already been released");

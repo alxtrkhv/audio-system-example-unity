@@ -33,7 +33,7 @@ namespace Alxtrkhv.AudioSystem
             if (audioSource == null) {
                 managedAudioSource = audioSourcesPool.Get();
                 audioSource = managedAudioSource.AudioSource;
-                audioSource.transform.SetParent(emitter.transform);
+                audioSource.transform.SetParent(emitter.transform, false);
             }
 
             soundEvent.Initialize(
