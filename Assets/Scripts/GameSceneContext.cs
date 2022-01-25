@@ -31,5 +31,10 @@ namespace Alxtrkhv.AudioSystem
         {
             return rangedWeaponImpactSoundController;
         }
+
+        public static BulletSystem GetBulletSystem()
+        {
+            return bulletSystem;
+        }
     }
 }
