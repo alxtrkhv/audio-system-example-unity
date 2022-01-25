@@ -17,7 +17,7 @@ namespace Alxtrkhv.AudioSystem
             InitializePool(config);
         }
 
-        public async void RegisterEmitter(SoundEventEmitter emitter)
+        public async void RegisterEmitter(SoundEventEmitter emitter, Vector3 position)
         {
             var sound = FindSound(emitter.SoundName);
 
@@ -25,18 +25,26 @@ namespace Alxtrkhv.AudioSystem
                 return;
             }
 
+            var audioSource = InitializeSoundSourceAtPosition(emitter, position);
+
             var soundEvent = new SoundEvent();
-
-            var audioSource = audioSourcesPool.Get();
-            audioSource.transform.SetParent(emitter.transform, false);
-            audioSource.gameObject.SetActive(true);
-
             soundEvent.Initialize(
                 source: audioSource,
                 sound: sound
             );
 
             await PlaySoundInternal(soundEvent);
+        }
+
+        private ManagedAudioSource InitializeSoundSourceAtPosition(SoundEventEmitter emitter, Vector3 position)
+        {
+            var audioSource = audioSourcesPool.Get();
+
+            audioSource.transform.SetParent(emitter.transform, false);
+            audioSource.gameObject.SetActive(true);
+            audioSource.transform.localPosition = position;
+
+            return audioSource;
         }
 
         private void InitializePool(SoundPlayerConfig config)

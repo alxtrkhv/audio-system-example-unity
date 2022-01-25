@@ -19,7 +19,12 @@ namespace Alxtrkhv.AudioSystem
 
         public void Emit()
         {
-            soundPlayer.RegisterEmitter(this);
+            soundPlayer.RegisterEmitter(this, Vector3.zero);
+        }
+
+        public void EmitAtLocalPosition(Vector3 position)
+        {
+            soundPlayer.RegisterEmitter(this, position);
         }
     }
 }
