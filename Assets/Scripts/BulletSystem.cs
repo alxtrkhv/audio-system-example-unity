@@ -11,7 +11,7 @@ namespace Alxtrkhv.AudioSystem
         private int poolSize = 50;
 
         [SerializeField]
-        private float bulletLerpRate = 0.2f;
+        private float bulletSpeed = 1f;
 
         [Header("Prefabs")]
         [SerializeField]
@@ -44,7 +44,7 @@ namespace Alxtrkhv.AudioSystem
             var bullet = bulletPool.Get();
 
             var ray = new Ray(startPosition, direction);
-            var hasHit = Physics.Raycast(ray, out var hit, maxDistance, 1 << 5);
+            var hasHit = Physics.Raycast(ray, out var hit, maxDistance, 1 << 6);
 
             var endPosition = hasHit ? hit.transform.position : ray.GetPoint(maxDistance);
 
@@ -60,12 +60,12 @@ namespace Alxtrkhv.AudioSystem
         private IEnumerator BulletMovementCoroutine()
         {
             while (true) {
-                foreach (var bullet in activeBullets) {
+                for (var i = 0; i < activeBullets.Count; i++) {
+                    var bullet = activeBullets[i];
                     var bulletTransform = bullet.transform;
 
                     if (bulletTransform.position != bullet.EndPosition) {
-                        var newPosition = Vector3.Lerp(bulletTransform.position, bullet.EndPosition, bulletLerpRate * Time.deltaTime);
-                        bulletTransform.Translate(newPosition);
+                        bulletTransform.position = Vector3.MoveTowards(bulletTransform.position, bullet.EndPosition, bulletSpeed * Time.deltaTime);
                         continue;
                     }
 
@@ -76,6 +76,7 @@ namespace Alxtrkhv.AudioSystem
                         impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, GetColliderMaterial(bullet.Target));
                     }
                 }
+
                 yield return null;
             }
         }

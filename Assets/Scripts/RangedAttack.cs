@@ -11,6 +11,8 @@ namespace Alxtrkhv.AudioSystem
         private BulletSystem bulletSystem;
         private Unit unit;
 
+        private Vector3 offset = new Vector3(0f, 1f, 1f);
+
         private void Start()
         {
             bulletSystem = GameSceneContext.GetBulletSystem();
@@ -23,7 +25,8 @@ namespace Alxtrkhv.AudioSystem
 
         public void ShotStraight()
         {
-            bulletSystem.ShotBullet(transform.position, transform.forward, maxDistance, unit.UnitSide);
+            var startPosition = transform.position + offset;
+            bulletSystem.ShotBullet(startPosition, transform.forward, maxDistance, unit.UnitSide);
         }
     }
 }

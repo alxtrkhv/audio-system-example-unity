@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,10 +18,13 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private GameObject loadingScreen;
 
-        private void Start()
+        private void Awake()
         {
             applicationContext.Init(this);
+        }
 
+        private void Start()
+        {
             if (SceneManager.GetActiveScene().buildIndex != 0) {
                 return;
             }

@@ -7,7 +7,7 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private GameSceneContext gameSceneContext;
 
-        private void Start()
+        private void Awake()
         {
             gameSceneContext.Initialize();
         }
