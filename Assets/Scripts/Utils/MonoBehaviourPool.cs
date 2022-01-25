@@ -6,10 +6,10 @@ namespace Alxtrkhv.AudioSystem
 {
     public class MonoBehaviourPool<TPooledObject> : IObjectPool<TPooledObject> where TPooledObject : MonoBehaviour
     {
-        private Stack<TPooledObject> inactiveObjects;
+        protected Stack<TPooledObject> inactiveObjects;
 
-        private TPooledObject prefab;
-        private Transform parentTransform;
+        protected TPooledObject prefab;
+        protected Transform parentTransform;
 
         public MonoBehaviourPool(int size, TPooledObject prefab, Transform parentTransform)
         {
@@ -24,7 +24,7 @@ namespace Alxtrkhv.AudioSystem
             }
         }
 
-        public TPooledObject Get()
+        public virtual TPooledObject Get()
         {
             TPooledObject obj;
 
@@ -37,7 +37,7 @@ namespace Alxtrkhv.AudioSystem
             return obj;
         }
 
-        public void Release(TPooledObject obj)
+        public virtual void Release(TPooledObject obj)
         {
             if (!inactiveObjects.Contains(obj)) {
                 obj.gameObject.SetActive(false);
@@ -49,7 +49,7 @@ namespace Alxtrkhv.AudioSystem
 
         }
 
-        private TPooledObject InitializeObject()
+        protected TPooledObject InitializeObject()
         {
             var obj = Object.Instantiate(prefab, parentTransform);
             obj.gameObject.SetActive(false);
