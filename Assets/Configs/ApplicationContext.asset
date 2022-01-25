@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6533ee82469a4bae8a79ae59b817013f, type: 3}
   m_Name: ApplicationContext
   m_EditorClassIdentifier: 
-  audioSourcesPoolSize: 5
+  audioSourcesPoolSize: 10
+  soundEventsPoolSize: 10
   audioSourcePrefab: {fileID: -5564416911340672582, guid: 0fec34ffeb4424ab988d5c80fcd36e57, type: 3}
   mainSoundPack: {fileID: 11400000, guid: 3b4392a4fd87e4245a674844bff7e059, type: 2}

@@ -11,11 +11,12 @@ namespace Alxtrkhv.AudioSystem
         private Dictionary<string, ISoundContainer> sounds;
 
         private IObjectPool<ManagedAudioSource> audioSourcesPool;
+        private IObjectPool<SoundEvent> soundEventPool;
 
         public SoundPlayer(SoundPlayerConfig config = default)
         {
             LoadSounds(config.Sounds);
-            InitializePool(config);
+            InitializePools(config);
         }
 
         public async void RegisterEmitterAsync(SoundEventEmitter emitter, SoundEventConfig config, Vector3 position)
@@ -35,7 +36,7 @@ namespace Alxtrkhv.AudioSystem
 
             SetAudioSourceLocalPosition(audioSource, emitter, position);
 
-            var soundEvent = new SoundEvent();
+            var soundEvent = soundEventPool.Get();
             soundEvent.Initialize(
                 source: audioSource,
                 sound: sound,
@@ -49,6 +50,8 @@ namespace Alxtrkhv.AudioSystem
 
             soundEvent.Status = SoundEvent.EventStatus.Finished;
             audioSource.IsBusy = false;
+
+            soundEventPool.Release(soundEvent);
         }
 
         private void SetAudioSourceLocalPosition(Component audioSource, Component parent, Vector3 position)
@@ -58,7 +61,7 @@ namespace Alxtrkhv.AudioSystem
             audioSource.transform.localPosition = position;
         }
 
-        private void InitializePool(SoundPlayerConfig config)
+        private void InitializePools(SoundPlayerConfig config)
         {
             var parent = new GameObject("AudioSourcesPool");
 
@@ -67,6 +70,8 @@ namespace Alxtrkhv.AudioSystem
                 prefab: config.AudioSourcePrefab,
                 parentTransform: parent.transform
             );
+
+            soundEventPool = new ObjectPool<SoundEvent>(config.SoundEventPoolSize);
         }
 
         private void LoadSounds(IReadOnlyCollection<ISoundContainer> sounds)

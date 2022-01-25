@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    public class SoundEvent
+    public class SoundEvent : IPoolable
     {
         public enum EventStatus
         {
@@ -26,6 +26,11 @@ namespace Alxtrkhv.AudioSystem
             ManagedAudioSource = source;
             Status = EventStatus.Registered;
             Config = config;
+        }
+
+        public void Release()
+        {
+
         }
     }
 }
