@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9063155243534501381
+--- !u!1 &6169583613529324006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 603802307490027526}
-  - component: {fileID: 3445592989213915264}
+  - component: {fileID: 1266019357247091221}
+  - component: {fileID: 4708399022108850840}
   m_Layer: 0
-  m_Name: GameSceneContext
+  m_Name: BulletSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &603802307490027526
+--- !u!4 &1266019357247091221
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9063155243534501381}
+  m_GameObject: {fileID: 6169583613529324006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,18 +31,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3445592989213915264
+--- !u!114 &4708399022108850840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9063155243534501381}
+  m_GameObject: {fileID: 6169583613529324006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a202e8a071e44a1ab9d6b76a6db4e5e5, type: 3}
+  m_Script: {fileID: 11500000, guid: c6a906758e85462ebef14be52b990cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedWeaponImpactSoundControllerPrefab: {fileID: 7099410161358968881, guid: f371cabd8d5064018b63498f0c5db475, type: 3}
-  applicationPrefab: {fileID: 701531062332268420, guid: 1eb6d707a750d4e9188d49a956f97b0f, type: 3}
-  bulletSystemPrefab: {fileID: 4708399022108850840, guid: ed7db8bed296041d5ab08bf3ef820a22, type: 3}
+  poolSize: 50
+  bulletLerpRate: 0.2
+  bulletPrefab: {fileID: -1465615571869959309, guid: 29d1cc855e6754b7582b4cc38bdafab8, type: 3}
