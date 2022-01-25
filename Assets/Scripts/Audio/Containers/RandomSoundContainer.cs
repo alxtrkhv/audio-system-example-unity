@@ -7,9 +7,9 @@ namespace Alxtrkhv.AudioSystem
     [CreateAssetMenu(fileName = "New Random Sound Container", menuName = "Audio/Random Sound Container", order = 0)]
     public class RandomSoundContainer : BaseSoundContainer
     {
-        [Header("Source")]
+        [Header("Sources")]
         [SerializeField]
-        private List<ISound> sources;
+        private List<BaseSoundContainer> sources;
 
         public override Task Play(AudioSource audioSource)
         {
