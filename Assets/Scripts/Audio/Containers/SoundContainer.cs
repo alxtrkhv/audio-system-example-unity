@@ -9,20 +9,5 @@ namespace Alxtrkhv.AudioSystem
         [Header("Sources")]
         [SerializeField]
         private AudioClip audioClip;
-
-        public override Task Play(SoundEvent soundEvent)
-        {
-            var audioSource = soundEvent.ManagedAudioSource.AudioSource;
-
-            audioSource.clip = audioClip;
-            audioSource.Play();
-
-            return Task.Factory.StartNew(async () =>
-            {
-                while (audioSource.isPlaying) {
-                    await Task.Delay(100);
-                }
-            });
-        }
     }
 }

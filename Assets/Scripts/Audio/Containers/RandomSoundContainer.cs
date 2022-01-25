@@ -10,12 +10,5 @@ namespace Alxtrkhv.AudioSystem
         [Header("Sources")]
         [SerializeField]
         private List<BaseSoundContainer> sources;
-
-        public override Task Play(SoundEvent soundEvent)
-        {
-            var randomIndex = Random.Range(0, sources.Count);
-
-            return sources[randomIndex].Play(soundEvent);
-        }
     }
 }

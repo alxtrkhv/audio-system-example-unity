@@ -11,7 +11,5 @@ namespace Alxtrkhv.AudioSystem
 
         public string Id => name;
         public SoundConfig Config => config;
-
-        public abstract Task Play(SoundEvent soundEvent);
     }
 }

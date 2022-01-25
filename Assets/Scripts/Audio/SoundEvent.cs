@@ -32,7 +32,6 @@ namespace Alxtrkhv.AudioSystem
         public async Task Play()
         {
             Status = EventStatus.Playing;
-            await Sound.Play(this);
             Status = EventStatus.Finished;
 
             Finished?.Invoke();
