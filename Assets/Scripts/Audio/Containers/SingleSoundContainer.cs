@@ -10,8 +10,9 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private AudioClip audioClip;
 
-        public override int Count => 1;
         public override SoundContainerType ContainerType => SoundContainerType.Single;
+
+        public override int Count => 1;
 
         public override AudioClip this[int index] {
             get {
