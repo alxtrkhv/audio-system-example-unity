@@ -27,15 +27,9 @@ namespace Alxtrkhv.AudioSystem
 
             var soundEvent = new SoundEvent();
 
-            var audioSource = emitter.AudioSource;
-            ManagedAudioSource managedAudioSource = null;
-
-            if (audioSource == null) {
-                managedAudioSource = audioSourcesPool.Get();
-                audioSource = managedAudioSource.AudioSource;
-                audioSource.transform.SetParent(emitter.transform, false);
-                managedAudioSource.gameObject.SetActive(true);
-            }
+            var audioSource = audioSourcesPool.Get();
+            audioSource.transform.SetParent(emitter.transform, false);
+            audioSource.gameObject.SetActive(true);
 
             soundEvent.Initialize(
                 source: audioSource,
@@ -43,10 +37,6 @@ namespace Alxtrkhv.AudioSystem
             );
 
             await PlaySoundInternal(soundEvent);
-
-            if (managedAudioSource != null) {
-                audioSourcesPool.Release(managedAudioSource);
-            }
         }
 
         private void InitializePool(SoundPlayerConfig config)

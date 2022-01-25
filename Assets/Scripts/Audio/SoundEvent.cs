@@ -17,20 +17,20 @@ namespace Alxtrkhv.AudioSystem
         public event Action Finished;
 
         public ISound Sound { get; private set; }
-        public AudioSource AudioSource { get; private set; }
+        public ManagedAudioSource ManagedAudioSource { get; private set; }
         public EventStatus Status { get; private set; }
 
-        public void Initialize(ISound sound, AudioSource source)
+        public void Initialize(ISound sound, ManagedAudioSource source)
         {
             Sound = sound;
-            AudioSource = source;
+            ManagedAudioSource = source;
             Status = EventStatus.Registered;
         }
 
         public async Task Play()
         {
             Status = EventStatus.Playing;
-            await Sound.Play(AudioSource);
+            await Sound.Play(ManagedAudioSource.AudioSource);
             Status = EventStatus.Finished;
 
             Finished?.Invoke();
