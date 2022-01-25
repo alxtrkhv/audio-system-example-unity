@@ -20,7 +20,7 @@ namespace Alxtrkhv.AudioSystem
 
         private void Start()
         {
-            applicationContext.Init();
+            applicationContext.Init(this);
 
             var loadingOperation = SceneManager.LoadSceneAsync(mainScene.name, LoadSceneMode.Additive);
 

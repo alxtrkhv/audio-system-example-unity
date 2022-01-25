@@ -5,6 +5,9 @@ namespace Alxtrkhv.AudioSystem
     [CreateAssetMenu(fileName = "New Application Context", menuName = "Application/Application Context", order = 0)]
     public class ApplicationContext : ScriptableObject
     {
+        private static Application application;
+        private static SoundPlayer soundPlayer;
+
         [Header("Audio")]
         [SerializeField]
         private int audioSourcesPoolSize;
@@ -15,11 +18,20 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private SoundPack mainSoundPack;
 
-        private static SoundPlayer soundPlayer;
-
-        public void Init()
+        public void Init(Application applicationInstance)
         {
+            application = applicationInstance;
             InitializeSoundPlayer();
+        }
+
+        public static Application GetApplication()
+        {
+            return application;
+        }
+
+        public static SoundPlayer GetSoundPlayer()
+        {
+            return soundPlayer;
         }
 
         private void InitializeSoundPlayer()
@@ -31,11 +43,6 @@ namespace Alxtrkhv.AudioSystem
             );
 
             soundPlayer = new SoundPlayer(config);
-        }
-
-        public static SoundPlayer GetSoundPlayer()
-        {
-            return soundPlayer;
         }
     }
 }
