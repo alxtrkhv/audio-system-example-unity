@@ -88,7 +88,7 @@ namespace Alxtrkhv.AudioSystem
             return PlayAudioClip(clip, soundEvent.ManagedAudioSource.AudioSource);
         }
 
-        private AudioClip ParseContainerForAudioClip(ISoundContainer container, SoundEventConfig config)
+        private static AudioClip ParseContainerForAudioClip(ISoundContainer container, SoundEventConfig config)
         {
             while (true) {
                 var containerMember = container.ContainerType switch
