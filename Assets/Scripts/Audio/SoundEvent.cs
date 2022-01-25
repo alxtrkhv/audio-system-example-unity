@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
@@ -23,7 +24,7 @@ namespace Alxtrkhv.AudioSystem
             Status = EventStatus.Registered;
         }
 
-        public async void Play()
+        public async Task Play()
         {
             Status = EventStatus.Playing;
             await Sound.Play(AudioSource);

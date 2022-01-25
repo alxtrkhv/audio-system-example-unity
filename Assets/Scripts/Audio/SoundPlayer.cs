@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
@@ -17,19 +18,36 @@ namespace Alxtrkhv.AudioSystem
             }
         }
 
-        public void RegisterEvent(SoundEventEmitter emitter)
+        public async void RegisterEvent(SoundEventEmitter emitter)
         {
-            PlaySoundInternal(emitter.SoundName, emitter.AudioSource);
+            var soundEvent = new SoundEvent();
+            var sound = FindSound(emitter.SoundName);
+
+            if (sound == null) {
+                return;
+            }
+
+            soundEvent.Register(
+                source: emitter.AudioSource,
+                sound: sound
+            );
+
+            await PlaySoundInternal(soundEvent);
         }
 
-        private void PlaySoundInternal(string key, AudioSource audioSource)
+        private ISound FindSound(string key)
         {
             if (sounds.TryGetValue(key, out var sound)) {
-                ApplySoundConfig(audioSource, sound.Config);
-                sound.Play(audioSource);
-            } else {
-                Debug.LogError($"There is no {key} sound loaded.");
+                return sound;
             }
+
+            Debug.LogError($"There is no {key} sound loaded.");
+            return null;
+        }
+
+        private async Task PlaySoundInternal(SoundEvent soundEvent)
+        {
+            await soundEvent.Play();
         }
 
         private void ApplySoundConfig(AudioSource audioSource, SoundConfig config)
