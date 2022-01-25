@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Alxtrkhv.AudioSystem
             Paused,
             Finished
         }
+
+        public event Action Finished;
 
         public ISound Sound { get; private set; }
         public AudioSource AudioSource { get; private set; }
@@ -29,6 +32,8 @@ namespace Alxtrkhv.AudioSystem
             Status = EventStatus.Playing;
             await Sound.Play(AudioSource);
             Status = EventStatus.Finished;
+
+            Finished?.Invoke();
         }
     }
 }
