@@ -6,8 +6,10 @@ namespace Alxtrkhv.AudioSystem
     {
         public static AudioClip ParseContainerForAudioClip(ISoundContainer container, SoundEventConfig config)
         {
-            while (true) {
-                var containerMember = container.ContainerType switch
+            SoundContainerMember containerMember;
+
+            do {
+                containerMember = container.ContainerType switch
                 {
                     SoundContainerType.Single => container[0],
                     SoundContainerType.Random => ParseRandomContainer(container),
@@ -17,11 +19,11 @@ namespace Alxtrkhv.AudioSystem
 
                 if (containerMember.SoundContainer != null) {
                     container = containerMember.SoundContainer;
-                    continue;
                 }
 
-                return containerMember.AudioClip;
-            }
+            } while (containerMember.SoundContainer != null);
+
+            return containerMember.AudioClip;
         }
 
         private static SoundContainerMember ParseSwitchContainer(ISoundContainer container, SoundEventConfig config)
