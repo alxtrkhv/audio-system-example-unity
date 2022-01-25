@@ -9,6 +9,9 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private float maxDistance;
 
+        [SerializeField]
+        private Vector3 heightOffset;
+
         [Header("References")]
         [SerializeField]
         private CharacterController characterController;
@@ -16,9 +19,14 @@ namespace Alxtrkhv.AudioSystem
         private BulletSystem bulletSystem;
         private Unit unit;
 
+
         private void Start()
         {
             bulletSystem = GameSceneContext.GetBulletSystem();
+
+            if (characterController != null) {
+                heightOffset = characterController.center;
+            }
         }
 
         public void Initialize(Unit unit)
@@ -30,7 +38,7 @@ namespace Alxtrkhv.AudioSystem
         {
             var tf = transform;
 
-            var startPosition = tf.position + characterController.center;
+            var startPosition = tf.position + heightOffset;
             bulletSystem.ShootBullet(startPosition, tf.forward, maxDistance, unit.UnitSide);
         }
     }
