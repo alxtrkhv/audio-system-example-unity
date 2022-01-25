@@ -5,13 +5,16 @@ namespace Alxtrkhv.AudioSystem
 {
     public class RangedAttack : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField]
         private float maxDistance;
 
+        [Header("References")]
+        [SerializeField]
+        private CharacterController characterController;
+
         private BulletSystem bulletSystem;
         private Unit unit;
-
-        private Vector3 offset = new Vector3(0f, 1f, 1f);
 
         private void Start()
         {
@@ -25,8 +28,10 @@ namespace Alxtrkhv.AudioSystem
 
         public void ShotStraight()
         {
-            var startPosition = transform.position + offset;
-            bulletSystem.ShotBullet(startPosition, transform.forward, maxDistance, unit.UnitSide);
+            var tf = transform;
+
+            var startPosition = tf.position + characterController.center;
+            bulletSystem.ShotBullet(startPosition, tf.forward, maxDistance, unit.UnitSide);
         }
     }
 }

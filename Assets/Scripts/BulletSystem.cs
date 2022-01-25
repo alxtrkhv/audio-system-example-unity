@@ -46,7 +46,7 @@ namespace Alxtrkhv.AudioSystem
             var ray = new Ray(startPosition, direction);
             var hasHit = Physics.Raycast(ray, out var hit, maxDistance, 1 << 6);
 
-            var endPosition = hasHit ? hit.transform.position : ray.GetPoint(maxDistance);
+            var endPosition = hasHit ? hit.point : ray.GetPoint(maxDistance);
 
             bullet.Initialize(startPosition, endPosition, unitSide, hit.collider);
             bullet.transform.position = startPosition;
