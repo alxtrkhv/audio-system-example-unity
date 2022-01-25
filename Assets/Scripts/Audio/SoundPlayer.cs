@@ -83,25 +83,38 @@ namespace Alxtrkhv.AudioSystem
 
         private Task PlaySoundInternal(SoundEvent soundEvent)
         {
-            soundEvent.Status = SoundEvent.EventStatus.Playing;
+            var clip = ParseContainerForAudioClip(soundEvent.Sound, soundEvent.Config);
 
-            return soundEvent.Sound.ContainerType switch
-            {
-                SoundContainerType.Single => PlayAudioClip(soundEvent.Sound[0].AudioClip, soundEvent.ManagedAudioSource.AudioSource),
-                SoundContainerType.Random => PlayRandomSound(soundEvent),
-                _ => null
-            };
+            return PlayAudioClip(clip, soundEvent.ManagedAudioSource.AudioSource);
         }
 
-        private Task PlayRandomSound(SoundEvent soundEvent)
+        private AudioClip ParseContainerForAudioClip(ISoundContainer container, SoundEventConfig config)
         {
-            var soundContainer = soundEvent.Sound;
-            var index = Random.Range(0, soundContainer.Count);
+            while (true) {
+                var containerMember = container.ContainerType switch
+                {
+                    SoundContainerType.Single => container[0],
+                    SoundContainerType.Random => ParseRandomContainer(container),
+                    _ => default
+                };
 
-            return PlayAudioClip(soundContainer[index].AudioClip, soundEvent.ManagedAudioSource.AudioSource);
+                if (containerMember.SoundContainer != null) {
+                    container = containerMember.SoundContainer;
+                    continue;
+                }
+
+                return containerMember.AudioClip;
+            }
         }
 
-        private Task PlayAudioClip(AudioClip clip, AudioSource source)
+        private static SoundContainerMember ParseRandomContainer(ISoundContainer container)
+        {
+            var index = Random.Range(0, container.Count);
+
+            return container[index];
+;        }
+
+        private static Task PlayAudioClip(AudioClip clip, AudioSource source)
         {
             source.clip = clip;
             source.Play();
