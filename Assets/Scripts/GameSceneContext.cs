@@ -5,13 +5,20 @@ namespace Alxtrkhv.AudioSystem
     public class GameSceneContext : MonoBehaviour
     {
         [SerializeField]
-        private RangedWeaponImpactSoundController rangedWeaponImpactSoundController;
+        private RangedWeaponImpactSoundController rangedWeaponImpactSoundControllerPrefab;
+
+        [SerializeField]
+        private Application applicationPrefab;
 
         private static RangedWeaponImpactSoundController RangedWeaponImpactSoundController;
 
         public void Start()
         {
-            RangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundController, Vector3.zero, Quaternion.identity);
+            if (ApplicationContext.GetApplication() == null) {
+                Instantiate(applicationPrefab, Vector3.zero, Quaternion.identity);
+            }
+
+            RangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundControllerPrefab, Vector3.zero, Quaternion.identity);
         }
 
         public static RangedWeaponImpactSoundController  GetRangedWeaponImpactSoundController()

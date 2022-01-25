@@ -21,6 +21,10 @@ namespace Alxtrkhv.AudioSystem
         {
             applicationContext.Init(this);
 
+            if (SceneManager.GetActiveScene().buildIndex != 0) {
+                return;
+            }
+
             SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive)
                         .completed += OnLoadingCompleted;
         }

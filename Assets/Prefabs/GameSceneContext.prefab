@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a202e8a071e44a1ab9d6b76a6db4e5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedWeaponImpactSoundController: {fileID: 7099410161358968881, guid: f371cabd8d5064018b63498f0c5db475, type: 3}
+  rangedWeaponImpactSoundControllerPrefab: {fileID: 7099410161358968881, guid: f371cabd8d5064018b63498f0c5db475, type: 3}
+  applicationPrefab: {fileID: 701531062332268420, guid: 1eb6d707a750d4e9188d49a956f97b0f, type: 3}
