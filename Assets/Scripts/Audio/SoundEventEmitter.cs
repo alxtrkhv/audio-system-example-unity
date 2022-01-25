@@ -39,7 +39,15 @@ namespace Alxtrkhv.AudioSystem
 
         public ManagedAudioSource GetFreeAudioSource()
         {
-            return audioSources.FirstOrDefault(x => !x.IsBusy);
+            ManagedAudioSource source = null;
+
+            for (var i = 0; i < audioSources.Count; i++) {
+                if (!audioSources[i].IsBusy) {
+                    source = audioSources[i];
+                }
+            }
+
+            return source;
         }
 
         public void ReleaseAudioSource(ManagedAudioSource audioSource)
