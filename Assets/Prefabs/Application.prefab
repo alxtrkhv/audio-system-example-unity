@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15654f2e16e6407f9b6fbc84a664afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneIndex: 1
   applicationContext: {fileID: 11400000, guid: 76151acbb6c8148b3a038a1e983ac81d, type: 2}
-  mainScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
   loadingScreen: {fileID: 0}

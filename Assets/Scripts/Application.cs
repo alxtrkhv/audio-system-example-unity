@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +5,13 @@ namespace Alxtrkhv.AudioSystem
 {
     public class Application : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField]
+        private int mainSceneIndex;
+
         [Header("Contexts")]
         [SerializeField]
         private ApplicationContext applicationContext;
-
-        [Header("Scene References")]
-        [SerializeField]
-        private SceneAsset mainScene;
 
         [Header("Screen references")]
         [SerializeField]
@@ -22,13 +21,14 @@ namespace Alxtrkhv.AudioSystem
         {
             applicationContext.Init(this);
 
-            var loadingOperation = SceneManager.LoadSceneAsync(mainScene.name, LoadSceneMode.Additive);
-
-            loadingOperation.completed += OnLoadingCompleted;
+            SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive)
+                        .completed += OnLoadingCompleted;
         }
 
         private void OnLoadingCompleted(AsyncOperation asyncOperation)
         {
+            var scene = SceneManager.GetSceneByBuildIndex(mainSceneIndex);
+            SceneManager.SetActiveScene(scene);
             loadingScreen.SetActive(false);
         }
     }
