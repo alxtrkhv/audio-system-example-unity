@@ -10,7 +10,7 @@ namespace Alxtrkhv.AudioSystem
 
         private Dictionary<string, ISoundContainer> sounds;
 
-        private MonoBehaviourPool<ManagedAudioSource> audioSourcesPool;
+        private IObjectPool<ManagedAudioSource> audioSourcesPool;
 
         public SoundPlayer(SoundPlayerConfig config = default)
         {
@@ -60,7 +60,7 @@ namespace Alxtrkhv.AudioSystem
 
         private void InitializePool(SoundPlayerConfig config)
         {
-            audioSourcesPool = new MonoBehaviourPool<ManagedAudioSource>(
+            audioSourcesPool = new LazyReleasedMonoBehaviourPool<ManagedAudioSource>(
                 size: config.AudioSourcesPoolSize,
                 prefab: config.AudioSourcePrefab,
                 parentTransform: null

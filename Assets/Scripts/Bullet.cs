@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour, IPoolable
     {
         public UnitSide UnitSide { get; private set; }
 
@@ -14,6 +14,10 @@ namespace Alxtrkhv.AudioSystem
             StartPosition = start;
             EndPosition = end;
             UnitSide = unitSide;
+        }
+
+        public void Release()
+        {
         }
     }
 }

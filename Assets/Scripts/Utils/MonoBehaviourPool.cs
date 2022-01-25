@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    public class MonoBehaviourPool<TPooledObject> : IObjectPool<TPooledObject> where TPooledObject : MonoBehaviour
+    public class MonoBehaviourPool<TPooledObject> : IObjectPool<TPooledObject> where TPooledObject : MonoBehaviour, IPoolable
     {
         protected Stack<TPooledObject> inactiveObjects;
 
@@ -37,16 +37,18 @@ namespace Alxtrkhv.AudioSystem
             return obj;
         }
 
-        public virtual void Release(TPooledObject obj)
+        public virtual bool Release(TPooledObject obj)
         {
-            if (!inactiveObjects.Contains(obj)) {
-                obj.gameObject.SetActive(false);
-                obj.transform.SetParent(parentTransform, false);
-                inactiveObjects.Push(obj);
-            } else {
+            if (inactiveObjects.Contains(obj)) {
                 Debug.LogWarning($"{obj.name} object has already been released");
+                return false;
             }
 
+            obj.Release();
+            obj.transform.SetParent(parentTransform, false);
+            inactiveObjects.Push(obj);
+
+            return true;
         }
 
         protected TPooledObject InitializeObject()

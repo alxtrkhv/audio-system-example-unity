@@ -34,6 +34,7 @@ namespace Alxtrkhv.AudioSystem
         public void AssignAudioSource(ManagedAudioSource audioSource)
         {
             audioSources.Add(audioSource);
+            audioSource.AssignEmitter(this);
         }
 
         public ManagedAudioSource GetFreeAudioSource()
