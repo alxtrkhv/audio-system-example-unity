@@ -7,6 +7,7 @@ namespace Alxtrkhv.AudioSystem
     {
         private static Application application;
         private static SoundPlayer soundPlayer;
+        private static Game game;
 
         [Header("Audio")]
         [SerializeField]
@@ -22,6 +23,7 @@ namespace Alxtrkhv.AudioSystem
         {
             application = applicationInstance;
             InitializeSoundPlayer();
+            InitializeGame();
         }
 
         public static Application GetApplication()
@@ -34,6 +36,11 @@ namespace Alxtrkhv.AudioSystem
             return soundPlayer;
         }
 
+        public Game GetGame()
+        {
+            return game;
+        }
+
         private void InitializeSoundPlayer()
         {
             var config = new SoundPlayerConfig(
@@ -43,6 +50,11 @@ namespace Alxtrkhv.AudioSystem
             );
 
             soundPlayer = new SoundPlayer(config);
+        }
+
+        private void InitializeGame()
+        {
+            game = new Game();
         }
     }
 }
