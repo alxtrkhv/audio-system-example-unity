@@ -10,7 +10,7 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private Application applicationPrefab;
 
-        private static RangedWeaponImpactSoundController RangedWeaponImpactSoundController;
+        private static RangedWeaponImpactSoundController rangedWeaponImpactSoundController;
 
         public void Start()
         {
@@ -18,12 +18,12 @@ namespace Alxtrkhv.AudioSystem
                 Instantiate(applicationPrefab, Vector3.zero, Quaternion.identity);
             }
 
-            RangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundControllerPrefab, Vector3.zero, Quaternion.identity);
+            rangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundControllerPrefab, Vector3.zero, Quaternion.identity);
         }
 
-        public static RangedWeaponImpactSoundController  GetRangedWeaponImpactSoundController()
+        public static RangedWeaponImpactSoundController GetRangedWeaponImpactSoundController()
         {
-            return RangedWeaponImpactSoundController;
+            return rangedWeaponImpactSoundController;
         }
     }
 }
