@@ -35,8 +35,6 @@ namespace Alxtrkhv.AudioSystem
 
             activeBullets = new List<Bullet>(poolSize);
             impactSoundController = GameSceneContext.GetRangedWeaponImpactSoundController();
-
-            coroutine = StartCoroutine(BulletMovementCoroutine());
         }
 
         public Bullet ShootBullet(Vector3 startPosition, Vector3 direction, float maxDistance, UnitSide unitSide)
@@ -57,27 +55,23 @@ namespace Alxtrkhv.AudioSystem
             return bullet;
         }
 
-        private IEnumerator BulletMovementCoroutine()
+        private void Update()
         {
-            while (true) {
-                for (var i = 0; i < activeBullets.Count; i++) {
-                    var bullet = activeBullets[i];
-                    var bulletTransform = bullet.transform;
+            for (var i = 0; i < activeBullets.Count; i++) {
+                var bullet = activeBullets[i];
+                var bulletTransform = bullet.transform;
 
-                    if (bulletTransform.position != bullet.EndPosition) {
-                        bulletTransform.position = Vector3.MoveTowards(bulletTransform.position, bullet.EndPosition, bulletSpeed * Time.deltaTime);
-                        continue;
-                    }
-
-                    activeBullets.Remove(bullet);
-                    bulletPool.Release(bullet);
-
-                    if (bullet.Target != null && bullet.Target.sharedMaterial != null) {
-                        impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, GetColliderMaterial(bullet.Target));
-                    }
+                if (bulletTransform.position != bullet.EndPosition) {
+                    bulletTransform.position = Vector3.MoveTowards(bulletTransform.position, bullet.EndPosition, bulletSpeed * Time.deltaTime);
+                    continue;
                 }
 
-                yield return null;
+                activeBullets.Remove(bullet);
+                bulletPool.Release(bullet);
+
+                if (bullet.Target != null && bullet.Target.sharedMaterial != null) {
+                    impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, GetColliderMaterial(bullet.Target));
+                }
             }
         }
 
