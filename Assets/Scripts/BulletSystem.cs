@@ -72,7 +72,7 @@ namespace Alxtrkhv.AudioSystem
                     activeBullets.Remove(bullet);
                     bulletPool.Release(bullet);
 
-                    if (bullet.Target != null) {
+                    if (bullet.Target != null && bullet.Target.sharedMaterial != null) {
                         impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, GetColliderMaterial(bullet.Target));
                     }
                 }
@@ -87,7 +87,7 @@ namespace Alxtrkhv.AudioSystem
             {
                 "Wood" => SurfaceType.Wood,
                 "Metal" => SurfaceType.Metal,
-                _ => SurfaceType.Metal
+                _ => default
             };
         }
     }
