@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    public class GameSceneContext : MonoBehaviour
+    [CreateAssetMenu(fileName = "New Game Scene Context", menuName = "Application/Game Scene Context", order = 0)]
+    public class GameSceneContext : ScriptableObject
     {
         [SerializeField]
         private RangedWeaponImpactSoundController rangedWeaponImpactSoundControllerPrefab;
@@ -16,7 +17,7 @@ namespace Alxtrkhv.AudioSystem
         private static RangedWeaponImpactSoundController rangedWeaponImpactSoundController;
         private static BulletSystem bulletSystem;
 
-        public void Start()
+        public void Initialize()
         {
             if (ApplicationContext.GetApplication() == null) {
                 Instantiate(applicationPrefab, Vector3.zero, Quaternion.identity);

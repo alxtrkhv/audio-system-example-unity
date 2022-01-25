@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603802307490027526}
-  - component: {fileID: 3445592989213915264}
+  - component: {fileID: 2983636585059349667}
   m_Layer: 0
-  m_Name: GameSceneContext
+  m_Name: SceneLifecycle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3445592989213915264
+--- !u!114 &2983636585059349667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9063155243534501381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a202e8a071e44a1ab9d6b76a6db4e5e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1340bb78a41c44f4b803cf8ebe9be215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedWeaponImpactSoundControllerPrefab: {fileID: 7099410161358968881, guid: f371cabd8d5064018b63498f0c5db475, type: 3}
-  applicationPrefab: {fileID: 701531062332268420, guid: 1eb6d707a750d4e9188d49a956f97b0f, type: 3}
-  bulletSystemPrefab: {fileID: 4708399022108850840, guid: ed7db8bed296041d5ab08bf3ef820a22, type: 3}
+  gameSceneContext: {fileID: 11400000, guid: 84eb2ee3dd3da499082f227b79a2c0ed, type: 2}
