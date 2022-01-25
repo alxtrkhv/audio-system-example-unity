@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Default Pack
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 11400000, guid: d2eda1bddcc18434f8177269e8fa2b58, type: 2}
-  - {fileID: 11400000, guid: b8edd4e9c30764565b01a6a2a2ff1be7, type: 2}
-  - {fileID: 11400000, guid: f03e8066ae8a94e299187baa4aeaf8e2, type: 2}
+  - {fileID: 11400000, guid: facc3dd46bcde44d081697a5a8f9dd68, type: 2}
+  - {fileID: 11400000, guid: 7abdcc7c328064795aa81f05463cfaf4, type: 2}
+  - {fileID: 11400000, guid: 1850b32c637b945a4954a95c89694b7a, type: 2}
