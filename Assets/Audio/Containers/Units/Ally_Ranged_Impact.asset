@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Ally_Ranged_Impact
   m_EditorClassIdentifier: 
   config:
-    Priority: 0
+    mixerGroup: {fileID: 5306984011581629151, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
+    maxDistance: 3
   member:
     audioClip: {fileID: 0}
     soundContainer: {fileID: 11400000, guid: 003a11a779d7b4c3791d2db55bbba470, type: 2}
