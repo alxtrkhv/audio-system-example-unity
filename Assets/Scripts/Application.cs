@@ -6,6 +6,10 @@ namespace Alxtrkhv.AudioSystem
 {
     public class Application : MonoBehaviour
     {
+        [Header("Contexts")]
+        [SerializeField]
+        private ApplicationContext applicationContext;
+
         [Header("Scene References")]
         [SerializeField]
         private SceneAsset mainScene;
@@ -16,6 +20,8 @@ namespace Alxtrkhv.AudioSystem
 
         private void Start()
         {
+            applicationContext.Init();
+
             var loadingOperation = SceneManager.LoadSceneAsync(mainScene.name, LoadSceneMode.Additive);
 
             loadingOperation.completed += OnLoadingCompleted;
