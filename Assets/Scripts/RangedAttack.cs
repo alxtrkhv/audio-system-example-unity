@@ -26,12 +26,12 @@ namespace Alxtrkhv.AudioSystem
             this.unit = unit;
         }
 
-        public void ShotStraight()
+        public void ShootStraight()
         {
             var tf = transform;
 
             var startPosition = tf.position + characterController.center;
-            bulletSystem.ShotBullet(startPosition, tf.forward, maxDistance, unit.UnitSide);
+            bulletSystem.ShootBullet(startPosition, tf.forward, maxDistance, unit.UnitSide);
         }
     }
 }

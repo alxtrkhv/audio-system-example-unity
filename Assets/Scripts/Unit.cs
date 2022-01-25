@@ -22,7 +22,7 @@ namespace Alxtrkhv.AudioSystem
 
         public void Attack()
         {
-            rangedAttack.ShotStraight();
+            rangedAttack.ShootStraight();
         }
     }
 }

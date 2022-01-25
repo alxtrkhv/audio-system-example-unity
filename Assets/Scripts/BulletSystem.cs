@@ -39,7 +39,7 @@ namespace Alxtrkhv.AudioSystem
             coroutine = StartCoroutine(BulletMovementCoroutine());
         }
 
-        public Bullet ShotBullet(Vector3 startPosition, Vector3 direction, float maxDistance, UnitSide unitSide)
+        public Bullet ShootBullet(Vector3 startPosition, Vector3 direction, float maxDistance, UnitSide unitSide)
         {
             var bullet = bulletPool.Get();
 
