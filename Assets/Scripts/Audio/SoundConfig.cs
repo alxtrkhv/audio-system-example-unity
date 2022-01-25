@@ -1,10 +1,14 @@
 using System;
+using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
     [Serializable]
     public struct SoundConfig
     {
-        public int Priority;
+        [SerializeField]
+        private float maxDistance;
+
+        public float MaxDistance => maxDistance;
     }
 }

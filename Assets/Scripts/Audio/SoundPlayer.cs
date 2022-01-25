@@ -92,12 +92,13 @@ namespace Alxtrkhv.AudioSystem
         {
             var clip = SoundContainerParser.ParseContainerForAudioClip(soundEvent.Sound, soundEvent.Config);
 
-            return PlayAudioClip(clip, soundEvent.ManagedAudioSource.AudioSource);
+            return PlayAudioClip(clip, soundEvent.ManagedAudioSource.AudioSource, soundEvent.Sound.Config);
         }
 
-        private static Task PlayAudioClip(AudioClip clip, AudioSource source)
+        private static Task PlayAudioClip(AudioClip clip, AudioSource source, SoundConfig config)
         {
             source.clip = clip;
+            source.SetConfig(config);
             source.Play();
 
             return Task.Factory.StartNew(async () =>
