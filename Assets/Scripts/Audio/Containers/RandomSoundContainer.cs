@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
+    [CreateAssetMenu(fileName = "New Random Sound Container", menuName = "Audio/Random Sound Container", order = 0)]
     public class RandomSoundContainer : BaseSoundContainer
     {
         [Header("Source")]
