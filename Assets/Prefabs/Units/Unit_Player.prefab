@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &455459889330572825
+--- !u!1001 &331017296958804667
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1554016229907029620, guid: 09617910982ed47658eecb1790032bb8, type: 3}
       propertyPath: unitSide
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: 09617910982ed47658eecb1790032bb8, type: 3}
       propertyPath: m_Name
-      value: Unit_Ally
+      value: Unit_Player
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: 09617910982ed47658eecb1790032bb8, type: 3}
       propertyPath: m_RootOrder
