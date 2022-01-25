@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb8bf20155a4841af1aca22631207e9, type: 3}
-  m_Name: Weapon_Snapsho_Group
+  m_Name: Weapon_Snapshot_Group
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
   snapshots:
@@ -18,6 +18,6 @@ MonoBehaviour:
   - {fileID: 24500006, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
   - {fileID: -8316307850051348963, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
   priorities:
-  - 0
+  - 0.1
   - 0.5
   - 1

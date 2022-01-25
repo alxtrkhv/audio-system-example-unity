@@ -892,11 +892,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6767975230930039033, guid: d5164bc66bedf48d29ee22cc40cd3af2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6767975231254212387, guid: d5164bc66bedf48d29ee22cc40cd3af2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6962775320911062253, guid: d5164bc66bedf48d29ee22cc40cd3af2, type: 3}
       propertyPath: m_Height
