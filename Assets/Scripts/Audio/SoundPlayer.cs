@@ -26,7 +26,14 @@ namespace Alxtrkhv.AudioSystem
                 return;
             }
 
-            var audioSource = InitializeSoundSourceAtLocalPosition(emitter, position);
+            var audioSource = emitter.GetFreeAudioSource();
+
+            if (audioSource == null) {
+                audioSource = audioSourcesPool.Get();
+                emitter.AssignAudioSource(audioSource);
+            }
+
+            SetAudioSourceLocalPosition(audioSource, emitter, position);
 
             var soundEvent = new SoundEvent();
             soundEvent.Initialize(
@@ -36,19 +43,19 @@ namespace Alxtrkhv.AudioSystem
             );
 
             soundEvent.Status = SoundEvent.EventStatus.Playing;
+            audioSource.IsBusy = true;
+
             await PlaySoundInternal(soundEvent);
+
             soundEvent.Status = SoundEvent.EventStatus.Finished;
+            audioSource.IsBusy = false;
         }
 
-        private ManagedAudioSource InitializeSoundSourceAtLocalPosition(Component parent, Vector3 position)
+        private void SetAudioSourceLocalPosition(Component audioSource, Component parent, Vector3 position)
         {
-            var audioSource = audioSourcesPool.Get();
-
             audioSource.transform.SetParent(parent.transform, false);
             audioSource.gameObject.SetActive(true);
             audioSource.transform.localPosition = position;
-
-            return audioSource;
         }
 
         private void InitializePool(SoundPlayerConfig config)

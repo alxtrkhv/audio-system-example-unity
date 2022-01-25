@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
@@ -11,6 +13,8 @@ namespace Alxtrkhv.AudioSystem
         private SoundPlayer soundPlayer;
 
         public string SoundName => soundName;
+
+        private List<ManagedAudioSource> audioSources = new List<ManagedAudioSource>();
 
         private void OnEnable()
         {
@@ -25,6 +29,21 @@ namespace Alxtrkhv.AudioSystem
         public void EmitAtLocalPosition(Vector3 position, SoundEventConfig config = default)
         {
             soundPlayer.RegisterEmitterAsync(this, config, position);
+        }
+
+        public void AssignAudioSource(ManagedAudioSource audioSource)
+        {
+            audioSources.Add(audioSource);
+        }
+
+        public ManagedAudioSource GetFreeAudioSource()
+        {
+            return audioSources.FirstOrDefault(x => !x.IsBusy);
+        }
+
+        public void ReleaseAudioSource(ManagedAudioSource audioSource)
+        {
+            audioSources.Remove(audioSource);
         }
     }
 }

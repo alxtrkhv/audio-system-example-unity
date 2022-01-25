@@ -10,5 +10,8 @@ namespace Alxtrkhv.AudioSystem
         private AudioSource audioSource;
 
         public AudioSource AudioSource => audioSource;
+
+        public bool IsBusy { get; set; }
+        public bool IsMarkedForRelease => !IsBusy;
     }
 }
