@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config:
     mixerGroup: {fileID: 1566422465622006716, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
-    maxDistance: 5
+    snapshotGroup: {fileID: 11400000, guid: 8132ab59cbeed4db9bcc899fff1060c7, type: 2}
+    snapshotGroupMemberIndex: 2
+    maxDistance: 15
   member:
     audioClip: {fileID: 0}
     soundContainer: {fileID: 11400000, guid: 003a11a779d7b4c3791d2db55bbba470, type: 2}

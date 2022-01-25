@@ -16,7 +16,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 2618030402374063881, guid: d12ae2ba7f9e54039aff0ffeb83d2676, type: 2}
     snapshotGroup: {fileID: 11400000, guid: 8132ab59cbeed4db9bcc899fff1060c7, type: 2}
     snapshotGroupMemberIndex: 0
-    maxDistance: 5
+    maxDistance: 15
   member:
     audioClip: {fileID: 0}
     soundContainer: {fileID: 11400000, guid: 003a11a779d7b4c3791d2db55bbba470, type: 2}
