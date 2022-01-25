@@ -7,13 +7,13 @@ namespace Alxtrkhv.AudioSystem
     public class SoundCollectionContainer : BaseSoundContainer
     {
         [SerializeField]
-        private SoundContainerType containerType;
+        private bool randomOrder;
 
         [Header(AudioClipsHeader)]
         [SerializeField]
         private List<AudioClip> audioClips;
 
-        public override SoundContainerType ContainerType => containerType;
+        public override SoundContainerType ContainerType => randomOrder ? SoundContainerType.Random : SoundContainerType.Sequential;
 
         public override int Count => audioClips.Count;
 
