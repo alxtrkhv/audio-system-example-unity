@@ -21,6 +21,7 @@ namespace Alxtrkhv.AudioSystem
 
         public void Release()
         {
+            gameObject.SetActive(false);
         }
     }
 }
