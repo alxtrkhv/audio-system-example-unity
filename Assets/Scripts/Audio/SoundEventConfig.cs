@@ -1,12 +1,14 @@
+using System.Collections.Generic;
+
 namespace Alxtrkhv.AudioSystem
 {
     public struct SoundEventConfig
     {
-        public int SwitchState { get; }
+        public Dictionary<string, int> Switches { get; }
 
-        public SoundEventConfig(int state)
+        public SoundEventConfig(Dictionary<string, int> switches)
         {
-            SwitchState = state;
+            Switches = switches;
         }
     }
 }

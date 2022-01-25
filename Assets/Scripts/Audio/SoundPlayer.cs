@@ -95,6 +95,7 @@ namespace Alxtrkhv.AudioSystem
                 {
                     SoundContainerType.Single => container[0],
                     SoundContainerType.Random => ParseRandomContainer(container),
+                    SoundContainerType.Switch => ParseSwitchContainer(container, config),
                     _ => default
                 };
 
@@ -105,6 +106,15 @@ namespace Alxtrkhv.AudioSystem
 
                 return containerMember.AudioClip;
             }
+        }
+
+        private static SoundContainerMember ParseSwitchContainer(ISoundContainer container, SoundEventConfig config)
+        {
+            var index = 0;
+
+            config.Switches?.TryGetValue(container.Id, out index);
+
+            return container[index];
         }
 
         private static SoundContainerMember ParseRandomContainer(ISoundContainer container)
