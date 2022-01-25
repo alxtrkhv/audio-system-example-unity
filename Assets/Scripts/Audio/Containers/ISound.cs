@@ -8,6 +8,6 @@ namespace Alxtrkhv.AudioSystem
         public string Id { get; }
         public SoundConfig Config { get; }
 
-        Task Play(AudioSource audioSource, SoundEvent soundEvent);
+        Task Play(SoundEvent soundEvent);
     }
 }
