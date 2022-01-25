@@ -9,6 +9,6 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private List<BaseSoundContainer> sounds;
 
-        public IReadOnlyCollection<ISound> Sounds => sounds;
+        public IReadOnlyCollection<ISoundContainer> Sounds => sounds;
     }
 }

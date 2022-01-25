@@ -7,7 +7,7 @@ namespace Alxtrkhv.AudioSystem
 {
     public class SoundPlayer
     {
-        private Dictionary<string, ISound> sounds;
+        private Dictionary<string, ISoundContainer> sounds;
 
         private MonoBehaviourPool<ManagedAudioSource> audioSourcesPool;
 
@@ -57,16 +57,16 @@ namespace Alxtrkhv.AudioSystem
             );
         }
 
-        private void LoadSounds(IReadOnlyCollection<ISound> sounds)
+        private void LoadSounds(IReadOnlyCollection<ISoundContainer> sounds)
         {
-            this.sounds = new Dictionary<string, ISound>(sounds.Count);
+            this.sounds = new Dictionary<string, ISoundContainer>(sounds.Count);
 
             foreach (var sound in sounds.Distinct()) {
                 this.sounds[sound.Id] = sound;
             }
         }
 
-        private ISound FindSound(string key)
+        private ISoundContainer FindSound(string key)
         {
             if (sounds.TryGetValue(key, out var sound)) {
                 return sound;

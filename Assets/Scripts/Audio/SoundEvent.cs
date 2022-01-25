@@ -16,12 +16,12 @@ namespace Alxtrkhv.AudioSystem
 
         public event Action Finished;
 
-        public ISound Sound { get; private set; }
+        public ISoundContainer Sound { get; private set; }
         public ManagedAudioSource ManagedAudioSource { get; private set; }
         public EventStatus Status { get; private set; }
         public SoundEventConfig Config { get; private set; }
 
-        public void Initialize(ISound sound, ManagedAudioSource source, SoundEventConfig config)
+        public void Initialize(ISoundContainer sound, ManagedAudioSource source, SoundEventConfig config)
         {
             Sound = sound;
             ManagedAudioSource = source;
