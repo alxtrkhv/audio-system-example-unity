@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ce7d3f5c6349b2acc0367f88972584, type: 3}
+  m_Name: Impact_Wood_Random
+  m_EditorClassIdentifier: 
+  config:
+    Priority: 0
+  collectionMode: 0
+  members:
+  - audioClip: {fileID: 8300000, guid: 89ae74b2790b84b27b5686edc4d5bc64, type: 3}
+    soundContainer: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: 99fb7526a6bcc405c9394d2f24755283, type: 3}
+    soundContainer: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: bb183a75be5e9407cb8459c3ff93b7c9, type: 3}
+    soundContainer: {fileID: 0}
