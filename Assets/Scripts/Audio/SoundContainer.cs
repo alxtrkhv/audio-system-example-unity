@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
@@ -9,9 +10,17 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private AudioClip audioClip;
 
-        public override void Play(AudioSource audioSource)
+        public override Task Play(AudioSource audioSource)
         {
-            audioSource.PlayOneShot(audioClip);
+            audioSource.clip = audioClip;
+            audioSource.Play();
+
+            return Task.Factory.StartNew(async () =>
+            {
+                while (audioSource.isPlaying) {
+                    await Task.Delay(100);
+                }
+            });
         }
     }
 }

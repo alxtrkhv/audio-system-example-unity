@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
@@ -7,6 +8,6 @@ namespace Alxtrkhv.AudioSystem
         public string Id { get; }
         public SoundConfig Config { get; }
 
-        void Play(AudioSource audioSource);
+        Task Play(AudioSource audioSource);
     }
 }
