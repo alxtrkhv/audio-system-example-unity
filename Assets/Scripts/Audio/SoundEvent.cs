@@ -14,11 +14,10 @@ namespace Alxtrkhv.AudioSystem
             Finished
         }
 
-        public event Action Finished;
+        public EventStatus Status { get; set; }
 
         public ISoundContainer Sound { get; private set; }
         public ManagedAudioSource ManagedAudioSource { get; private set; }
-        public EventStatus Status { get; private set; }
         public SoundEventConfig Config { get; private set; }
 
         public void Initialize(ISoundContainer sound, ManagedAudioSource source, SoundEventConfig config)
@@ -27,14 +26,6 @@ namespace Alxtrkhv.AudioSystem
             ManagedAudioSource = source;
             Status = EventStatus.Registered;
             Config = config;
-        }
-
-        public async Task Play()
-        {
-            Status = EventStatus.Playing;
-            Status = EventStatus.Finished;
-
-            Finished?.Invoke();
         }
     }
 }

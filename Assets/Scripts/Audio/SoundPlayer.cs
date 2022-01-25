@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
     public class SoundPlayer
     {
+        private const int TaskInterval = 50;
+
         private Dictionary<string, ISoundContainer> sounds;
 
         private MonoBehaviourPool<ManagedAudioSource> audioSourcesPool;
@@ -34,7 +37,9 @@ namespace Alxtrkhv.AudioSystem
                 config: config
             );
 
+            soundEvent.Status = SoundEvent.EventStatus.Playing;
             await PlaySoundInternal(soundEvent);
+            soundEvent.Status = SoundEvent.EventStatus.Finished;
         }
 
         private ManagedAudioSource InitializeSoundSourceAtLocalPosition(Component parent, Vector3 position)
@@ -76,9 +81,28 @@ namespace Alxtrkhv.AudioSystem
             return null;
         }
 
-        private async Task PlaySoundInternal(SoundEvent soundEvent)
+        private Task PlaySoundInternal(SoundEvent soundEvent)
         {
-            await soundEvent.Play();
+            soundEvent.Status = SoundEvent.EventStatus.Playing;
+
+            return soundEvent.Sound.ContainerType switch
+            {
+                SoundContainerType.Single => PlayAudioClip(soundEvent.Sound[0], soundEvent.ManagedAudioSource.AudioSource),
+                _ => null
+            };
+        }
+
+        private Task PlayAudioClip(AudioClip clip, AudioSource source)
+        {
+            source.clip = clip;
+            source.Play();
+
+            return Task.Factory.StartNew(async () =>
+            {
+                while (source.isPlaying) {
+                    await Task.Delay(TaskInterval);
+                }
+            });
         }
 
         private void ApplySoundConfig(AudioSource audioSource, SoundConfig config)
