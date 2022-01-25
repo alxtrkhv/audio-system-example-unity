@@ -23,14 +23,13 @@ namespace Alxtrkhv.AudioSystem
 
         private SoundEventEmitter GetEmitter(UnitSide unitSide)
         {
-            switch (unitSide) {
-                case UnitSide.Player: return playerEmitter;
-                case UnitSide.Ally: return allyEmitter;
-                case UnitSide.Enemy: return enemyEmitter;
-            }
-
-            Debug.LogError($"{unitSide} UnitSide is not supported");
-            return null;
+            return unitSide switch
+            {
+                UnitSide.Ally => allyEmitter,
+                UnitSide.Enemy => enemyEmitter,
+                UnitSide.Player => playerEmitter,
+                _ => null
+            };
         }
     }
 }
