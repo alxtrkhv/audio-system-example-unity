@@ -136,9 +136,5 @@ namespace Alxtrkhv.AudioSystem
                 }
             });
         }
-
-        private void ApplySoundConfig(AudioSource audioSource, SoundConfig config)
-        {
-        }
     }
 }
