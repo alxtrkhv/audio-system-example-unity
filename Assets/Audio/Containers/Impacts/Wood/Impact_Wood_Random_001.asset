@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96f70cedf754a1795f9ad4ce7819611, type: 3}
+  m_Name: Impact_Wood_Random_001
+  m_EditorClassIdentifier: 
+  config:
+    Priority: 0
+  sources:
+  - {fileID: 11400000, guid: 6e847b1d520114748ac78ea2623758f1, type: 2}
+  - {fileID: 11400000, guid: d3524e827d95e43408ec770a868e7b49, type: 2}
+  - {fileID: 11400000, guid: 9e22d14c4fa7c4735889d6cc84f8b67b, type: 2}
