@@ -10,7 +10,7 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private AudioClip audioClip;
 
-        public override Task Play(AudioSource audioSource)
+        public override Task Play(AudioSource audioSource, SoundEvent soundEvent)
         {
             audioSource.clip = audioClip;
             audioSource.Play();
