@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16de981fc9848f8a7d672f091a01b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  surfaceSoundSwitchName: Impact_Surface_Switch
   playerEmitter: {fileID: 3108305368516498689}
   allyEmitter: {fileID: 5500896618816032255}
   enemyEmitter: {fileID: 5938501448658532683}
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad023b568d545a6bf0a95b90aa2d95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundName: Ranged_Impact_Player_001
+  soundName: Player_Ranged_Impact
 --- !u!114 &5500896618816032255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad023b568d545a6bf0a95b90aa2d95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundName: Ranged_Impact_Ally_001
+  soundName: Ally_Ranged_Impact
 --- !u!114 &5938501448658532683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,4 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad023b568d545a6bf0a95b90aa2d95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundName: Ranged_Impact_Enemy_001
+  soundName: Enemy_Ranged_Impact
