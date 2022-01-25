@@ -19,12 +19,14 @@ namespace Alxtrkhv.AudioSystem
         public ISound Sound { get; private set; }
         public ManagedAudioSource ManagedAudioSource { get; private set; }
         public EventStatus Status { get; private set; }
+        public SoundEventConfig Config { get; private set; }
 
-        public void Initialize(ISound sound, ManagedAudioSource source)
+        public void Initialize(ISound sound, ManagedAudioSource source, SoundEventConfig config)
         {
             Sound = sound;
             ManagedAudioSource = source;
             Status = EventStatus.Registered;
+            Config = config;
         }
 
         public async Task Play()
