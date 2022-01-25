@@ -88,8 +88,17 @@ namespace Alxtrkhv.AudioSystem
             return soundEvent.Sound.ContainerType switch
             {
                 SoundContainerType.Single => PlayAudioClip(soundEvent.Sound[0], soundEvent.ManagedAudioSource.AudioSource),
+                SoundContainerType.Random => PlayRandomSound(soundEvent),
                 _ => null
             };
+        }
+
+        private Task PlayRandomSound(SoundEvent soundEvent)
+        {
+            var soundContainer = soundEvent.Sound;
+            var index = Random.Range(0, soundContainer.Count);
+
+            return PlayAudioClip(soundContainer[index], soundEvent.ManagedAudioSource.AudioSource);
         }
 
         private Task PlayAudioClip(AudioClip clip, AudioSource source)
