@@ -39,11 +39,16 @@ namespace Alxtrkhv.AudioSystem
             coroutine = StartCoroutine(BulletMovementCoroutine());
         }
 
-        public Bullet ShotBullet(Vector3 startPosition, Vector3 endPosition, UnitSide unitSide)
+        public Bullet ShotBullet(Vector3 startPosition, Vector3 direction, float maxDistance, UnitSide unitSide)
         {
             var bullet = bulletPool.Get();
 
-            bullet.Initialize(startPosition, endPosition, unitSide);
+            var ray = new Ray(startPosition, direction);
+            var hasHit = Physics.Raycast(ray, out var hit, maxDistance, 1 << 5);
+
+            var endPosition = hasHit ? hit.transform.position : ray.GetPoint(maxDistance);
+
+            bullet.Initialize(startPosition, endPosition, unitSide, hit.collider);
             bullet.transform.position = startPosition;
 
             bullet.gameObject.SetActive(true);
@@ -67,10 +72,22 @@ namespace Alxtrkhv.AudioSystem
                     activeBullets.Remove(bullet);
                     bulletPool.Release(bullet);
 
-                    impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, SurfaceType.Wood);
+                    if (bullet.Target != null) {
+                        impactSoundController.PlayImpactSound(bulletTransform.position, bullet.UnitSide, GetColliderMaterial(bullet.Target));
+                    }
                 }
                 yield return null;
             }
+        }
+
+        private static SurfaceType GetColliderMaterial(Collider collider)
+        {
+            return collider.sharedMaterial.name switch
+            {
+                "Wood" => SurfaceType.Wood,
+                "Metal" => SurfaceType.Metal,
+                _ => SurfaceType.Metal
+            };
         }
     }
 }
