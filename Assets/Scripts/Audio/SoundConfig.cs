@@ -5,23 +5,23 @@ using UnityEngine.Audio;
 namespace Alxtrkhv.AudioSystem
 {
     [Serializable]
-    public struct SoundConfig
+    public class SoundConfig
     {
         [SerializeField]
         private AudioMixerGroup mixerGroup;
 
         [SerializeField]
-        private AudioMixerSnapshot mixerSnapshot;
+        private SnapshotGroup snapshotGroup;
 
         [SerializeField]
-        private int priority;
+        private int snapshotGroupMemberIndex;
 
         [SerializeField]
         private float maxDistance;
 
         public AudioMixerGroup MixerGroup => mixerGroup;
-        public AudioMixerSnapshot MixerSnapshot => mixerSnapshot;
-        public int Priority => priority;
         public float MaxDistance => maxDistance;
+        public SnapshotGroup SnapshotGroup => snapshotGroup;
+        public int SnapshotGroupMemberIndex => snapshotGroupMemberIndex;
     }
 }

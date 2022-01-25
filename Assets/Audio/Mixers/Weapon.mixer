@@ -6,7 +6,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: Weapon_Player
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: d8bbf18c5a11d47cb980deec76de401f
   m_FloatValues:
@@ -51,10 +51,10 @@ AudioMixerController:
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
-  - {fileID: -8316307850051348963}
-  - {fileID: 24500006}
   - {fileID: 6292340258082401380}
-  m_StartSnapshot: {fileID: 24500006}
+  - {fileID: 24500006}
+  - {fileID: -8316307850051348963}
+  m_StartSnapshot: {fileID: 6292340258082401380}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
@@ -67,7 +67,7 @@ AudioMixerController:
     - e89e6984ef013462b9c7fd285a03f681
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -8316307850051348963}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -110,12 +110,12 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy
+  m_Name: Weapon_Enemy
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: ca71de52290354f33968991104e02605
   m_FloatValues:
-    6d7f9cc21961c431c8ff56ca60a24923: -19.255655
-    58636cdb65a51497580f1719836c68c5: -48.139305
+    6d7f9cc21961c431c8ff56ca60a24923: 0
+    58636cdb65a51497580f1719836c68c5: -20.610773
   m_TransitionOverrides: {}
 --- !u!243 &1566422465622006716
 AudioMixerGroupController:
@@ -175,12 +175,12 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ally
+  m_Name: Weapon_Default
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 6bd5602c17b2d46db91583a80ea6cb19
   m_FloatValues:
-    6d7f9cc21961c431c8ff56ca60a24923: -19.255655
-    58636cdb65a51497580f1719836c68c5: -48.139305
+    6d7f9cc21961c431c8ff56ca60a24923: 0
+    58636cdb65a51497580f1719836c68c5: 0
   m_TransitionOverrides: {}
 --- !u!243 &7570182463971101478
 AudioMixerGroupController:

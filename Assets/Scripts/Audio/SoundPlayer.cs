@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Alxtrkhv.AudioSystem
 {
@@ -12,6 +14,8 @@ namespace Alxtrkhv.AudioSystem
         private IObjectPool<SoundEvent> soundEventPool;
 
         private List<SoundEvent> activeEvents;
+
+        private List<AudioMixerSnapshot> activeSnapshots;
 
         private MonoBehaviour monoBehaviour;
         private Coroutine coroutine;
@@ -72,6 +76,9 @@ namespace Alxtrkhv.AudioSystem
 
             soundEventPool = new ObjectPool<SoundEvent>(config.AudioSourcesPoolSize);
             activeEvents = new List<SoundEvent>(config.AudioSourcesPoolSize);
+            activeSnapshots = new List<AudioMixerSnapshot>(config.AudioSourcesPoolSize);
+
+
         }
 
         private void LoadSounds(IReadOnlyCollection<ISoundContainer> sounds)
@@ -80,6 +87,9 @@ namespace Alxtrkhv.AudioSystem
 
             foreach (var sound in sounds) {
                 this.sounds[sound.Id] = sound;
+                if (sound.Config.SnapshotGroup != null) {
+                    sound.Config.SnapshotGroup.Initialize();
+                }
             }
         }
 
@@ -101,11 +111,25 @@ namespace Alxtrkhv.AudioSystem
             soundEvent.ManagedAudioSource.IsBusy = true;
 
             PlayAudioClip(clip, soundEvent);
+
+            TryIncrementSnapshotGroupCounter(soundEvent.Sound.Config);
+        }
+
+        private void TryIncrementSnapshotGroupCounter(SoundConfig config)
+        {
+            var snapshotGroup = config.SnapshotGroup;
+
+            if (snapshotGroup != null) {
+                snapshotGroup.IncrementSoundCounter(config.SnapshotGroupMemberIndex);
+                snapshotGroup.TriggerUpdate(0.1f);
+            }
         }
 
         private IEnumerator SoundPlayerLoopCoroutine()
         {
-            var loopInterval = new WaitForSecondsRealtime(0.5f);
+            var loopInterval = new WaitForSecondsRealtime(0.33f);
+
+            var snapshotGroups = new List<SnapshotGroup>();
 
             while (true) {
                 for (var i = 0; i < activeEvents.Count; i++) {
@@ -120,7 +144,22 @@ namespace Alxtrkhv.AudioSystem
 
                     soundEventPool.Release(soundEvent);
                     activeEvents.Remove(soundEvent);
+
+                    var config = soundEvent.Sound.Config;
+
+                    var snapshotGroup = config.SnapshotGroup;
+
+                    if (snapshotGroup != null) {
+                        snapshotGroup.DecrementSoundCounter(config.SnapshotGroupMemberIndex);
+                        snapshotGroups.Add(snapshotGroup);
+                    }
                 }
+
+                for (var i = 0; i < snapshotGroups.Count; i++) {
+                    snapshotGroups[i].TriggerUpdate(0.1f);
+                }
+
+                snapshotGroups.Clear();
 
                 yield return loopInterval;
             }
