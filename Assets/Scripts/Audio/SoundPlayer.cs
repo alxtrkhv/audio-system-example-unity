@@ -20,7 +20,7 @@ namespace Alxtrkhv.AudioSystem
             InitializePool(config);
         }
 
-        public async void RegisterEmitter(SoundEventEmitter emitter, SoundEventConfig config, Vector3 position)
+        public async void RegisterEmitterAsync(SoundEventEmitter emitter, SoundEventConfig config, Vector3 position)
         {
             var sound = FindSound(emitter.SoundName);
 
