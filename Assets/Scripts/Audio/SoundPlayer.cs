@@ -66,7 +66,7 @@ namespace Alxtrkhv.AudioSystem
         {
             this.sounds = new Dictionary<string, ISoundContainer>(sounds.Count);
 
-            foreach (var sound in sounds.Distinct()) {
+            foreach (var sound in sounds) {
                 this.sounds[sound.Id] = sound;
             }
         }

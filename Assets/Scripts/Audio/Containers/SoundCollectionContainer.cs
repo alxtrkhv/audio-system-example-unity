@@ -21,7 +21,7 @@ namespace Alxtrkhv.AudioSystem
 
         public override IEnumerator<AudioClip> GetEnumerator()
         {
-            return audioClips.GetEnumerator();
+            return ((IEnumerable<AudioClip>)audioClips).GetEnumerator();
         }
     }
 }
