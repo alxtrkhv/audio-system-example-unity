@@ -14,9 +14,6 @@ namespace Alxtrkhv.AudioSystem
         private int audioSourcesPoolSize;
 
         [SerializeField]
-        private int soundEventsPoolSize;
-
-        [SerializeField]
         private ManagedAudioSource audioSourcePrefab;
 
         [SerializeField]
@@ -48,12 +45,11 @@ namespace Alxtrkhv.AudioSystem
         {
             var config = new SoundPlayerConfig(
                 audioSourcesPoolSize: audioSourcesPoolSize,
-                soundEventPoolSize: soundEventsPoolSize,
                 sounds: mainSoundPack.Sounds,
                 audioSourcePrefab: audioSourcePrefab
             );
 
-            soundPlayer = new SoundPlayer(config);
+            soundPlayer = new SoundPlayer(application, config);
         }
 
         private void InitializeGame()

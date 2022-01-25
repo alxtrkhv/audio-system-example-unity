@@ -1,25 +1,32 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
     public class SoundPlayer
     {
-        private const int TaskInterval = 50;
-
         private Dictionary<string, ISoundContainer> sounds;
 
         private IObjectPool<ManagedAudioSource> audioSourcesPool;
         private IObjectPool<SoundEvent> soundEventPool;
 
-        public SoundPlayer(SoundPlayerConfig config = default)
+        private List<SoundEvent> activeEvents;
+
+        private MonoBehaviour monoBehaviour;
+        private Coroutine coroutine;
+
+        public SoundPlayer(MonoBehaviour monoBehaviour, SoundPlayerConfig config = default)
         {
+            this.monoBehaviour = monoBehaviour;
+
             LoadSounds(config.Sounds);
-            InitializePools(config);
+            InitializeCollections(config);
+
+            coroutine = monoBehaviour.StartCoroutine(SoundPlayerLoopCoroutine());
         }
 
-        public async void RegisterEmitterAsync(SoundEventEmitter emitter, SoundEventConfig config, Vector3 position)
+        public void RegisterEmitter(SoundEventEmitter emitter, SoundEventConfig config, Vector3 position)
         {
             var sound = FindSound(emitter.SoundName);
 
@@ -43,15 +50,7 @@ namespace Alxtrkhv.AudioSystem
                 config: config
             );
 
-            soundEvent.Status = SoundEvent.EventStatus.Playing;
-            audioSource.IsBusy = true;
-
-            await PlayEvent(soundEvent);
-
-            soundEvent.Status = SoundEvent.EventStatus.Finished;
-            audioSource.IsBusy = false;
-
-            soundEventPool.Release(soundEvent);
+            PlayEvent(soundEvent);
         }
 
         private void SetAudioSourceLocalPosition(Component audioSource, Component parent, Vector3 position)
@@ -61,7 +60,7 @@ namespace Alxtrkhv.AudioSystem
             audioSource.transform.localPosition = position;
         }
 
-        private void InitializePools(SoundPlayerConfig config)
+        private void InitializeCollections(SoundPlayerConfig config)
         {
             var parent = new GameObject("AudioSourcesPool");
 
@@ -71,7 +70,8 @@ namespace Alxtrkhv.AudioSystem
                 parentTransform: parent.transform
             );
 
-            soundEventPool = new ObjectPool<SoundEvent>(config.SoundEventPoolSize);
+            soundEventPool = new ObjectPool<SoundEvent>(config.AudioSourcesPoolSize);
+            activeEvents = new List<SoundEvent>(config.AudioSourcesPoolSize);
         }
 
         private void LoadSounds(IReadOnlyCollection<ISoundContainer> sounds)
@@ -93,25 +93,48 @@ namespace Alxtrkhv.AudioSystem
             return null;
         }
 
-        private Task PlayEvent(SoundEvent soundEvent)
+        private void PlayEvent(SoundEvent soundEvent)
         {
             var clip = SoundContainerParser.ParseContainerForAudioClip(soundEvent.Sound, soundEvent.Config);
 
-            return PlayAudioClip(clip, soundEvent.ManagedAudioSource.AudioSource, soundEvent.Sound.Config);
+            soundEvent.Status = SoundEvent.EventStatus.Playing;
+            soundEvent.ManagedAudioSource.IsBusy = true;
+
+            PlayAudioClip(clip, soundEvent);
         }
 
-        private static Task PlayAudioClip(AudioClip clip, AudioSource source, SoundConfig config)
+        private IEnumerator SoundPlayerLoopCoroutine()
         {
+            var loopInterval = new WaitForSecondsRealtime(0.5f);
+
+            while (true) {
+                for (var i = 0; i < activeEvents.Count; i++) {
+                    var soundEvent = activeEvents[i];
+
+                    if (soundEvent.ManagedAudioSource.AudioSource.isPlaying) {
+                        continue;
+                    }
+
+                    soundEvent.Status = SoundEvent.EventStatus.Finished;
+                    soundEvent.ManagedAudioSource.IsBusy = false;
+
+                    soundEventPool.Release(soundEvent);
+                    activeEvents.Remove(soundEvent);
+                }
+
+                yield return loopInterval;
+            }
+        }
+
+        private void PlayAudioClip(AudioClip clip, SoundEvent soundEvent)
+        {
+            var source = soundEvent.ManagedAudioSource.AudioSource;
+
             source.clip = clip;
-            source.SetConfig(config);
+            source.SetConfig(soundEvent.Sound.Config);
             source.Play();
 
-            return Task.Factory.StartNew(async () =>
-            {
-                while (source.isPlaying) {
-                    await Task.Delay(TaskInterval);
-                }
-            });
+            activeEvents.Add(soundEvent);
         }
     }
 }

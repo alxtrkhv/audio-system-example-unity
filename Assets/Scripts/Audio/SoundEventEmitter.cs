@@ -23,12 +23,12 @@ namespace Alxtrkhv.AudioSystem
 
         public void Emit(SoundEventConfig config = default)
         {
-            soundPlayer.RegisterEmitterAsync(this, config, Vector3.zero);
+            soundPlayer.RegisterEmitter(this, config, Vector3.zero);
         }
 
         public void EmitAtLocalPosition(Vector3 position, SoundEventConfig config = default)
         {
-            soundPlayer.RegisterEmitterAsync(this, config, position);
+            soundPlayer.RegisterEmitter(this, config, position);
         }
 
         public void AssignAudioSource(ManagedAudioSource audioSource)
