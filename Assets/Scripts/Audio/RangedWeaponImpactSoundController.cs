@@ -8,7 +8,7 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private SoundEventEmitter emitter;
 
-        public void PlatImpactSound(Vector3 position)
+        public void PlayImpactSound(Vector3 position)
         {
 
         }
