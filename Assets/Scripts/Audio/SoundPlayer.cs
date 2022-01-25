@@ -45,7 +45,7 @@ namespace Alxtrkhv.AudioSystem
             soundEvent.Status = SoundEvent.EventStatus.Playing;
             audioSource.IsBusy = true;
 
-            await PlaySoundInternal(soundEvent);
+            await PlayEvent(soundEvent);
 
             soundEvent.Status = SoundEvent.EventStatus.Finished;
             audioSource.IsBusy = false;
@@ -86,7 +86,7 @@ namespace Alxtrkhv.AudioSystem
             return null;
         }
 
-        private Task PlaySoundInternal(SoundEvent soundEvent)
+        private Task PlayEvent(SoundEvent soundEvent)
         {
             var clip = SoundContainerParser.ParseContainerForAudioClip(soundEvent.Sound, soundEvent.Config);
 
