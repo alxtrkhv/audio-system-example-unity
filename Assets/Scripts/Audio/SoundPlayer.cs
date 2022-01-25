@@ -9,30 +9,61 @@ namespace Alxtrkhv.AudioSystem
     {
         private Dictionary<string, ISound> sounds;
 
-        public SoundPlayer(IReadOnlyCollection<ISound> sounds)
-        {
-            this.sounds = new Dictionary<string, ISound>(sounds.Count);
+        private MonoBehaviourPool<ManagedAudioSource> audioSourcesPool;
 
-            foreach (var sound in sounds.Distinct()) {
-                this.sounds[sound.Id] = sound;
-            }
+        public SoundPlayer(SoundPlayerConfig config = default)
+        {
+            LoadSounds(config.Sounds);
+            InitializePool(config);
         }
 
-        public async void RegisterEvent(SoundEventEmitter emitter)
+        public async void RegisterEmitter(SoundEventEmitter emitter)
         {
-            var soundEvent = new SoundEvent();
             var sound = FindSound(emitter.SoundName);
 
             if (sound == null) {
                 return;
             }
 
+            var soundEvent = new SoundEvent();
+
+            var audioSource = emitter.AudioSource;
+            ManagedAudioSource managedAudioSource = null;
+
+            if (audioSource == null) {
+                managedAudioSource = audioSourcesPool.Get();
+                audioSource = managedAudioSource.AudioSource;
+                audioSource.transform.SetParent(emitter.transform);
+            }
+
             soundEvent.Register(
-                source: emitter.AudioSource,
+                source: audioSource,
                 sound: sound
             );
 
             await PlaySoundInternal(soundEvent);
+
+            if (managedAudioSource != null) {
+                audioSourcesPool.Release(managedAudioSource);
+            }
+        }
+
+        private void InitializePool(SoundPlayerConfig config)
+        {
+            audioSourcesPool = new MonoBehaviourPool<ManagedAudioSource>(
+                size: config.AudioSourcesPoolSize,
+                prefab: config.AudioSourcePrefab,
+                parentTransform: null
+            );
+        }
+
+        private void LoadSounds(IReadOnlyCollection<ISound> sounds)
+        {
+            this.sounds = new Dictionary<string, ISound>(sounds.Count);
+
+            foreach (var sound in sounds.Distinct()) {
+                this.sounds[sound.Id] = sound;
+            }
         }
 
         private ISound FindSound(string key)

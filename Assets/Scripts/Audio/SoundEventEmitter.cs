@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    [RequireComponent(typeof(AudioSource))]
     public class SoundEventEmitter : MonoBehaviour
     {
         [SerializeField]
@@ -23,7 +22,7 @@ namespace Alxtrkhv.AudioSystem
 
         public void Emit()
         {
-            soundPlayer.RegisterEvent(this);
+            soundPlayer.RegisterEmitter(this);
         }
     }
 }
