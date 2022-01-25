@@ -6,6 +6,8 @@ namespace Alxtrkhv.AudioSystem
 {
     public abstract class BaseSoundContainer : ScriptableObject, ISoundContainer
     {
+        protected const string AudioClipsHeader = "Audio Clips";
+
         [Header("Settings")]
         [SerializeField]
         private SoundConfig config;
