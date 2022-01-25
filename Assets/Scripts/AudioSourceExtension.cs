@@ -6,6 +6,7 @@ namespace Alxtrkhv.AudioSystem
     {
         public static void SetConfig(this AudioSource audioSource, SoundConfig config)
         {
+            audioSource.outputAudioMixerGroup = config.MixerGroup;
             audioSource.maxDistance = config.MaxDistance;
         }
     }
