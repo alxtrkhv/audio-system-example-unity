@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
-    public interface ISoundContainer : IReadOnlyList<AudioClip>
+    public interface ISoundContainer : IReadOnlyList<SoundContainerMember>
     {
         public string Id { get; }
         public SoundConfig Config { get; }

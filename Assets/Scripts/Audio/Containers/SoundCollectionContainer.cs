@@ -11,17 +11,17 @@ namespace Alxtrkhv.AudioSystem
 
         [Header(AudioClipsHeader)]
         [SerializeField]
-        private List<AudioClip> audioClips;
+        private List<SoundContainerMember> members;
 
         public override SoundContainerType ContainerType => randomOrder ? SoundContainerType.Random : SoundContainerType.Sequential;
 
-        public override int Count => audioClips.Count;
+        public override int Count => members.Count;
 
-        public override AudioClip this[int index] => audioClips[index];
+        public override SoundContainerMember this[int index] => members[index];
 
-        public override IEnumerator<AudioClip> GetEnumerator()
+        public override IEnumerator<SoundContainerMember> GetEnumerator()
         {
-            return ((IEnumerable<AudioClip>)audioClips).GetEnumerator();
+            return ((IEnumerable<SoundContainerMember>)members).GetEnumerator();
         }
     }
 }

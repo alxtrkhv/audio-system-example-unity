@@ -12,8 +12,8 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private SoundConfig config;
 
-        public abstract AudioClip this[int index] { get; }
-        public abstract IEnumerator<AudioClip> GetEnumerator();
+        public abstract SoundContainerMember this[int index] { get; }
+        public abstract IEnumerator<SoundContainerMember> GetEnumerator();
         public abstract int Count { get; }
 
         public abstract SoundContainerType ContainerType { get; }

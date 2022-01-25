@@ -9,25 +9,25 @@ namespace Alxtrkhv.AudioSystem
     {
         [Header(AudioClipsHeader)]
         [SerializeField]
-        private AudioClip audioClip;
+        private SoundContainerMember member;
 
         public override SoundContainerType ContainerType => SoundContainerType.Single;
 
         public override int Count => 1;
 
-        public override AudioClip this[int index] {
+        public override SoundContainerMember this[int index] {
             get {
                 if (index != 0) {
                     throw new IndexOutOfRangeException();
                 }
 
-                return audioClip;
+                return member;
             }
         }
 
-        public override IEnumerator<AudioClip> GetEnumerator()
+        public override IEnumerator<SoundContainerMember> GetEnumerator()
         {
-            yield return audioClip;
+            yield return member;
         }
     }
 }
