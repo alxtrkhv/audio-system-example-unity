@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
+    [CreateAssetMenu(fileName = "New Single Sound Container", menuName = "Audio/Single Sound Container")]
     public class SingleSoundContainer : BaseSoundContainer
     {
         [Header(AudioClipsHeader)]

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Alxtrkhv.AudioSystem
 {
+    [CreateAssetMenu(fileName = "New MultiSound Container", menuName = "Audio/MultiSound Container")]
     public class MultiSoundContainer : BaseSoundContainer
     {
         [SerializeField]
