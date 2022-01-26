@@ -9,7 +9,7 @@ namespace Alxtrkhv.AudioSystem
 
         private void Awake()
         {
-            gameSceneContext.Initialize();
+            gameSceneContext.Initialize(transform);
         }
     }
 }

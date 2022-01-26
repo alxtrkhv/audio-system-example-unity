@@ -17,14 +17,14 @@ namespace Alxtrkhv.AudioSystem
         private static RangedWeaponImpactSoundController rangedWeaponImpactSoundController;
         private static BulletSystem bulletSystem;
 
-        public void Initialize()
+        public void Initialize(Transform transform)
         {
             if (ApplicationContext.GetApplication() == null) {
-                Instantiate(applicationPrefab, Vector3.zero, Quaternion.identity);
+                Instantiate(applicationPrefab, transform);
             }
 
-            rangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundControllerPrefab, Vector3.zero, Quaternion.identity);
-            bulletSystem = Instantiate(bulletSystemPrefab, Vector3.zero, Quaternion.identity);
+            rangedWeaponImpactSoundController = Instantiate(rangedWeaponImpactSoundControllerPrefab, transform);
+            bulletSystem = Instantiate(bulletSystemPrefab, transform);
         }
 
         public static RangedWeaponImpactSoundController GetRangedWeaponImpactSoundController()

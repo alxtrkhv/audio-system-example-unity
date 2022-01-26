@@ -29,14 +29,17 @@ namespace Alxtrkhv.AudioSystem
                 return;
             }
 
-            SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive)
-                        .completed += OnLoadingCompleted;
+            var loadingOperation = SceneManager.LoadSceneAsync(mainSceneIndex, LoadSceneMode.Additive);
+
+            loadingOperation.allowSceneActivation = true;
+
+            loadingOperation.completed += OnLoadingCompleted;
         }
 
         private void OnLoadingCompleted(AsyncOperation asyncOperation)
         {
-            var scene = SceneManager.GetSceneByBuildIndex(mainSceneIndex);
-            SceneManager.SetActiveScene(scene);
+            asyncOperation.completed -= OnLoadingCompleted;
+
             loadingScreen.SetActive(false);
         }
     }
