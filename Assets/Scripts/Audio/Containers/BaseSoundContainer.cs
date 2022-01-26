@@ -13,20 +13,19 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private SoundConfig config;
 
-        private string id;
-
         public abstract SoundContainerMember this[int index] { get; }
         public abstract IEnumerator<SoundContainerMember> GetEnumerator();
         public abstract int Count { get; }
 
         public abstract SoundContainerType ContainerType { get; }
 
-        public string Id => id;
+        public string Id { get; private set; }
+
         public SoundConfig Config => config;
 
         private void OnEnable()
         {
-            id = name;
+            Id = name;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
