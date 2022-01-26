@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Impact_Surface_Switch
   m_EditorClassIdentifier: 
   config:
-    Priority: 0
-  collectionMode: 2
+    mixerGroup: {fileID: 0}
+    snapshotGroup: {fileID: 0}
+    snapshotGroupMemberIndex: 0
+    maxDistance: 0
+  collectionMode: 1
   members:
   - audioClip: {fileID: 0}
     soundContainer: {fileID: 11400000, guid: 79afce3d190e3497ea770b6ef9b2eff4, type: 2}
