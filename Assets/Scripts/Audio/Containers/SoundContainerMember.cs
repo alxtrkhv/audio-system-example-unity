@@ -12,7 +12,6 @@ namespace Alxtrkhv.AudioSystem
         private BaseSoundContainer soundContainer;
 
         public AudioClip AudioClip => audioClip;
-
         public BaseSoundContainer SoundContainer => soundContainer;
     }
 }

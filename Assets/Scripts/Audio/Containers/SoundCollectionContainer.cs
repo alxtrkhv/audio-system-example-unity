@@ -20,16 +20,15 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private List<SoundContainerMember> members;
 
+        public override int Count => members.Count;
+        public override SoundContainerMember this[int index] => members[index];
+
         public override SoundContainerType ContainerType => collectionMode switch
         {
             CollectionMode.Random => SoundContainerType.Random,
             CollectionMode.Switch => SoundContainerType.Switch,
             _ => throw new NotImplementedException($"{collectionMode} mode of {nameof(SoundCollectionContainer)} is not supported.")
         };
-
-        public override int Count => members.Count;
-
-        public override SoundContainerMember this[int index] => members[index];
 
         public override IEnumerator<SoundContainerMember> GetEnumerator()
         {

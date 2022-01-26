@@ -11,8 +11,6 @@ namespace Alxtrkhv.AudioSystem
         [SerializeField]
         private SoundContainerMember member;
 
-        public override SoundContainerType ContainerType => SoundContainerType.Single;
-
         public override int Count => 1;
 
         public override SoundContainerMember this[int index] {
@@ -24,6 +22,8 @@ namespace Alxtrkhv.AudioSystem
                 return member;
             }
         }
+
+        public override SoundContainerType ContainerType => SoundContainerType.Single;
 
         public override IEnumerator<SoundContainerMember> GetEnumerator()
         {
