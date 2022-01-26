@@ -19,7 +19,6 @@ namespace Alxtrkhv.AudioSystem
         private BulletSystem bulletSystem;
         private Unit unit;
 
-
         private void Start()
         {
             bulletSystem = GameSceneContext.GetBulletSystem();
