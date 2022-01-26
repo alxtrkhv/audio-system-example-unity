@@ -47,7 +47,6 @@ namespace Alxtrkhv.AudioSystem
             var endPosition = hasHit ? hit.point : ray.GetPoint(maxDistance);
 
             bullet.Initialize(startPosition, endPosition, unitSide, hit.collider);
-            bullet.transform.position = startPosition;
 
             bullet.gameObject.SetActive(true);
             activeBullets.Add(bullet);
